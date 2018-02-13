@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <data>
+        <variable
+            name="Person"
+            type="com.flowapps.assingmentopenweb.service.models.Person"/>
+    </data>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/row_textview_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@{Person.firstName}"/>
+
+        <TextView
+            android:id="@+id/row_textview_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@{Person.lastName}"/>
+
+        <TextView
+            android:id="@+id/row_textview_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@{Person.issueCount}"/>
+
+        <TextView
+            android:id="@+id/row_textview_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@{Person.dateOfBirth.toString()}"/>
+
+    </LinearLayout>
+</layout>
