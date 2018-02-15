@@ -3,46 +3,36 @@ package com.flowapps.assingmentopenweb.service.repository
 import com.flowapps.assingmentopenweb.App
 import com.flowapps.assingmentopenweb.R
 import com.flowapps.assingmentopenweb.service.models.Person
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStream
+import de.siegmar.fastcsv.reader.CsvReader
 import java.io.InputStreamReader
-import java.nio.charset.Charset
 import java.text.SimpleDateFormat
 
+/**
+ * Demo repository, uses the FastCSV library for reading and parsing locally included CSV file.
+ *
+ * @see <a href="https://github.com/osiegmar/FastCSV">CsvReader</a>
+ */
 object ProjectRepository {
 
-    val skipHeader = true
+    private const val skipHeader = true
 
     fun loadData() : List<Person> {
-        val listData = arrayListOf<Person>()
         val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val listData = arrayListOf<Person>()
 
-        val inputStream: InputStream = App.applicationContext().resources.openRawResource(R.raw.issues)
-        val reader = BufferedReader(InputStreamReader(inputStream, Charset.forName("UTF-8")))
-        var index = 0
+        val inputStream = App.applicationContext().resources.openRawResource(R.raw.issues)
+        val inputReader = InputStreamReader(inputStream)
+        val csvReader = CsvReader()
+        csvReader.setContainsHeader(skipHeader)
 
-        try {
-            while (true) {
-                index++
-                val line = reader.readLine() ?: break
-
-                if (index == 1 && skipHeader) {
-                    continue
-                } else {
-                    val tokens: List<String> = line.split(",")
-
-                    val person = Person(
-                            tokens[0].replace("\"", ""),
-                            tokens[1].replace("\"", ""),
-                            tokens[2].replace("\"", ""),
-                            format.parse(tokens[3].replace("\"", "")))
-                    listData.add(person)
-                }
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        val csv = csvReader.read(inputReader)
+        csv.rows.forEach({
+            val person = Person(it.getField("First name"),
+                    it.getField("Sur name"),
+                    it.getField("Issue count"),
+                    format.parse(it.getField("Date of birth")))
+            listData.add(person)
+        })
 
         return listData
     }
