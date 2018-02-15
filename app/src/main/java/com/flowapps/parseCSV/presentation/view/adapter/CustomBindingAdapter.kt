@@ -1,4 +1,4 @@
-package com.flowapps.assingmentopenweb.presentation.view.adapter
+package com.flowapps.parseCSV.presentation.view.adapter
 
 import android.databinding.BindingAdapter
 import android.view.View

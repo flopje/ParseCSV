@@ -1,4 +1,4 @@
-package com.flowapps.assingmentopenweb
+package com.flowapps.parseCSV
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

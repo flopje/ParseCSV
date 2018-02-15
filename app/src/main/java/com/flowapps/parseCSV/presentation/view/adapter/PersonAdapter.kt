@@ -1,10 +1,10 @@
-package com.flowapps.assingmentopenweb.presentation.view.adapter
+package com.flowapps.parseCSV.presentation.view.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.flowapps.assingmentopenweb.databinding.RecyclerviewRowBinding
-import com.flowapps.assingmentopenweb.service.models.Person
+import com.flowapps.parseCSV.databinding.RecyclerviewRowBinding
+import com.flowapps.parseCSV.service.models.Person
 
 
 class PersonAdapter : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {

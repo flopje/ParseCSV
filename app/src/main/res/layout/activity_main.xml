@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.flowapps.assingmentopenweb.presentation.view.activity.MainActivity">
+        tools:context="com.flowapps.parseCSV.presentation.view.activity.MainActivity">
 
         <TextView
             android:layout_width="match_parent"

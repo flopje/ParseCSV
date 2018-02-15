@@ -1,8 +1,8 @@
-package com.flowapps.assingmentopenweb.util.extensions
+package com.flowapps.parseCSV.util.extensions
 
 import android.arch.lifecycle.LifecycleOwner
 import android.util.Log
-import com.flowapps.assingmentopenweb.util.listeners.CoroutineLifecycleListener
+import com.flowapps.parseCSV.util.listeners.CoroutineLifecycleListener
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
 
