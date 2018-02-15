@@ -1,8 +1,8 @@
-package com.flowapps.assingmentopenweb.service.repository
+package com.flowapps.parseCSV.service.repository
 
-import com.flowapps.assingmentopenweb.App
-import com.flowapps.assingmentopenweb.R
-import com.flowapps.assingmentopenweb.service.models.Person
+import com.flowapps.parseCSV.App
+import com.flowapps.parseCSV.R
+import com.flowapps.parseCSV.service.models.Person
 import de.siegmar.fastcsv.reader.CsvReader
 import java.io.InputStreamReader
 import java.text.SimpleDateFormat

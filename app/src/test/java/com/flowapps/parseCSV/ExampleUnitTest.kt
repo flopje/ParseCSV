@@ -1,4 +1,4 @@
-package com.flowapps.assingmentopenweb
+package com.flowapps.parseCSV
 
 import org.junit.Test
 

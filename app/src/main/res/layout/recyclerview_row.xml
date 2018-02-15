@@ -4,7 +4,7 @@
     <data>
         <variable
             name="Person"
-            type="com.flowapps.assingmentopenweb.service.models.Person"/>
+            type="com.flowapps.parseCSV.service.models.Person"/>
     </data>
     
     <LinearLayout

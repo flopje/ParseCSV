@@ -1,4 +1,4 @@
-package com.flowapps.assingmentopenweb.presentation.view.activity
+package com.flowapps.parseCSV.presentation.view.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.flowapps.assingmentopenweb.R
-import com.flowapps.assingmentopenweb.databinding.ActivityMainBinding
-import com.flowapps.assingmentopenweb.presentation.view.adapter.PersonAdapter
-import com.flowapps.assingmentopenweb.presentation.viewmodel.PersonListViewModel
+import com.flowapps.parseCSV.R
+import com.flowapps.parseCSV.databinding.ActivityMainBinding
+import com.flowapps.parseCSV.presentation.view.adapter.PersonAdapter
+import com.flowapps.parseCSV.presentation.viewmodel.PersonListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

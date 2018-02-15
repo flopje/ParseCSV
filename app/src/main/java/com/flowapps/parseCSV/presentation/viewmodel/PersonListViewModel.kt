@@ -1,10 +1,10 @@
-package com.flowapps.assingmentopenweb.presentation.viewmodel
+package com.flowapps.parseCSV.presentation.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import com.flowapps.assingmentopenweb.service.models.Person
-import com.flowapps.assingmentopenweb.service.repository.ProjectRepository
+import com.flowapps.parseCSV.service.models.Person
+import com.flowapps.parseCSV.service.repository.ProjectRepository
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async

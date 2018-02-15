@@ -1,4 +1,4 @@
-package com.flowapps.assingmentopenweb.service.models
+package com.flowapps.parseCSV.service.models
 
 import java.util.*
 
