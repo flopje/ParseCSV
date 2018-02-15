@@ -22,6 +22,10 @@ android {
     dataBinding {
         enabled = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 kotlin {
@@ -31,35 +35,28 @@ kotlin {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // Android support libraries
     implementation "com.android.support:appcompat-v7:$android_support_version"
     implementation "com.android.support:design:$android_support_version"
 
     // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:1.1.0"
-
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
-
+    implementation 'android.arch.lifecycle:extensions:1.1.0'
+    annotationProcessor "android.arch.lifecycle:common-java8:1.1.0"
     kapt "com.android.databinding:compiler:$android_plugin_version"
 
     // Kotlin coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.20"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.20'
 
     // FastCSV reader
     implementation 'de.siegmar:fastcsv:1.0.2'
 
     // Test helpers for LiveData
-    testImplementation "android.arch.core:core-testing:1.1.0"
-
+    testImplementation 'android.arch.core:core-testing:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$android_plugin_version"
-}
-
-kapt {
-    generateStubs = false
 }
