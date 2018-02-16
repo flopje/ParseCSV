@@ -34,6 +34,9 @@ object ProjectRepository {
             listData.add(person)
         })
 
+        inputReader.close()
+        inputStream.close()
+
         return listData
     }
 }
