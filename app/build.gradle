@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+def dbflow_version = "4.2.4"
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -53,6 +55,12 @@ dependencies {
 
     // FastCSV reader
     implementation 'de.siegmar:fastcsv:1.0.2'
+
+    // DBFlow
+    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}@aar"
 
     // Test helpers for LiveData
     testImplementation 'android.arch.core:core-testing:1.1.0'
