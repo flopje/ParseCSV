@@ -1,5 +1,6 @@
 package com.flowapps.parseCSV.service.repository
 
+import android.annotation.SuppressLint
 import com.flowapps.parseCSV.App
 import com.flowapps.parseCSV.R
 import com.flowapps.parseCSV.service.models.Person
@@ -35,6 +36,7 @@ object ProjectRepository {
         return selectAllPersona()
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun parseData(): List<Person> {
         val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         val listData = arrayListOf<Person>()
