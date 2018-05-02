@@ -1,8 +1,11 @@
 package com.flowapps.parseCSV.service.repository
 
+import android.annotation.SuppressLint
 import com.flowapps.parseCSV.App
 import com.flowapps.parseCSV.R
 import com.flowapps.parseCSV.service.models.Person
+import com.flowapps.parseCSV.service.models.selectAllPersona
+import com.raizlabs.android.dbflow.kotlinextensions.save
 import de.siegmar.fastcsv.reader.CsvReader
 import java.io.InputStreamReader
 import java.text.SimpleDateFormat
@@ -17,6 +20,24 @@ object ProjectRepository {
     private const val skipHeader = true
 
     fun loadData() : List<Person> {
+
+        var persons : List<Person> = retrievePersons()
+        if (persons.isEmpty()) {
+            persons = parseData()
+            persons.forEach({
+                it.save()
+            })
+        }
+
+        return persons
+    }
+
+    private fun retrievePersons(): List<Person> {
+        return selectAllPersona()
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun parseData(): List<Person> {
         val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         val listData = arrayListOf<Person>()
 
