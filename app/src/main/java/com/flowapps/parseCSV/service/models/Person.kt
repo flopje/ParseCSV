@@ -1,24 +1,35 @@
 package com.flowapps.parseCSV.service.models
 
-import com.flowapps.parseCSV.service.database.AppDatabase
-import com.raizlabs.android.dbflow.annotation.Column
-import com.raizlabs.android.dbflow.annotation.PrimaryKey
-import com.raizlabs.android.dbflow.annotation.Table
-import com.raizlabs.android.dbflow.kotlinextensions.from
-import com.raizlabs.android.dbflow.kotlinextensions.list
-import com.raizlabs.android.dbflow.kotlinextensions.select
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-@Table(database = AppDatabase::class)
-class Person(@Column var firstName: String? = null,
-             @Column var lastName: String? = null,
-             @Column var issueCount: String? = null,
-             @Column var dateOfBirth: Date? = null) {
+@Entity
+class Person(var firstName: String? = null,
+             var lastName: String? = null,
+             var issueCount: String? = null,
+             var dateOfBirth: Date? = null) {
 
-    @PrimaryKey(autoincrement = true)
+    @PrimaryKey(autoGenerate = true)
     var id: Int = 0
-}
 
-fun selectAllPersona() : List<Person> {
-    return (select from Person::class).list
+    override fun equals(other: Any?): Boolean {
+        return try {
+            val person = other as Person
+            firstName.equals(person.firstName) &&
+                    lastName.equals(person.lastName) &&
+                    dateOfBirth == person.dateOfBirth
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override fun hashCode(): Int {
+        var result = firstName?.hashCode() ?: 0
+        result = 31 * result + (lastName?.hashCode() ?: 0)
+        result = 31 * result + (issueCount?.hashCode() ?: 0)
+        result = 31 * result + (dateOfBirth?.hashCode() ?: 0)
+        result = 31 * result + id
+        return result
+    }
 }

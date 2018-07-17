@@ -1,35 +1,32 @@
 package com.flowapps.parseCSV.presentation.view.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.flowapps.parseCSV.R
-import com.flowapps.parseCSV.databinding.ActivityMainBinding
-import com.flowapps.parseCSV.presentation.view.adapter.PersonAdapter
-import com.flowapps.parseCSV.presentation.viewmodel.PersonListViewModel
+import com.flowapps.parseCSV.presentation.view.fragment.settings.SettingsFragment
+import com.flowapps.parseCSV.presentation.view.fragment.settings.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
 
-    private val personAdapter: PersonAdapter = PersonAdapter()
-    private lateinit var mainBinding: ActivityMainBinding
+class MainActivity : AppCompatActivity(), SettingsFragment.OnListFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mainBinding.isLoading = true
-
+        setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        recyclerview.adapter = personAdapter
+        setupNavigation()
+    }
 
-        val personListViewModel: PersonListViewModel = ViewModelProviders.of(this).get(PersonListViewModel::class.java)
-        observeViewModel(personListViewModel)
+    private fun setupNavigation() {
+        val navController = findNavController(R.id.fragment_container)
+        setupActionBarWithNavController(this, navController)
+        NavigationUI.setupWithNavController(toolbar_layout, toolbar, navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -39,22 +36,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings ->
-                return true
-            else -> super.onOptionsItemSelected(item)
-        }
+        return NavigationUI.onNavDestinationSelected(item, findNavController(R.id.fragment_container))
     }
 
-    private fun observeViewModel(personListViewModel: PersonListViewModel) {
-        personListViewModel.getData().observe(this, Observer { persons ->
-            personAdapter.setData(persons)
-            personAdapter.notifyDataSetChanged()
-            mainBinding.isLoading = false
+    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
 
-        })
     }
+
+    override fun onSupportNavigateUp() = findNavController(R.id.fragment_container).navigateUp()
+
 }

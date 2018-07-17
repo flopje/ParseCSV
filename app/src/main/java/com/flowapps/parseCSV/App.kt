@@ -2,7 +2,8 @@ package com.flowapps.parseCSV
 
 import android.app.Application
 import android.content.Context
-import com.raizlabs.android.dbflow.config.FlowManager
+import androidx.room.Room
+import com.flowapps.parseCSV.persistence.database.AppDatabase
 
 
 class App : Application() {
@@ -13,6 +14,7 @@ class App : Application() {
 
     companion object {
         private var instance: App? = null
+        var db: AppDatabase? = null
 
         fun applicationContext() : Context {
             return instance!!.applicationContext
@@ -21,6 +23,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        FlowManager.init(this)
+
+        db = Room.databaseBuilder(applicationContext,
+                AppDatabase::class.java, AppDatabase.NAME).build()
     }
 }

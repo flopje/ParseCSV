@@ -3,17 +3,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
-def dbflow_version = "4.2.4"
+def nav_version = "1.0.0-alpha03"
+def room_version = "2.0.0-beta01"
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.flowapps.assingmentopenweb"
-        minSdkVersion 18
-        targetSdkVersion 27
+        applicationId "com.flowapps.parseCsv"
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -41,29 +42,43 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Android support libraries
-    implementation "com.android.support:appcompat-v7:$android_support_version"
-    implementation "com.android.support:design:$android_support_version"
+    implementation "androidx.appcompat:appcompat:$android_support_version"
+    implementation "com.google.android.material:material:$android_support_version"
+    implementation "androidx.cardview:cardview:$android_support_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
 
     // ViewModel and LiveData
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-    annotationProcessor "android.arch.lifecycle:common-java8:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
+    implementation "androidx.recyclerview:recyclerview:$android_support_version"
+    kapt 'androidx.lifecycle:lifecycle-common-java8:2.0.0-beta01'
+
+    // Android room database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Navigation component
+    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+
+    // Contstraintlayout
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
 
     // Kotlin coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.20'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5'
 
     // FastCSV reader
     implementation 'de.siegmar:fastcsv:1.0.2'
 
-    // DBFlow
-    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}@aar"
-
     // Test helpers for LiveData
-    testImplementation 'android.arch.core:core-testing:1.1.1'
+    testImplementation 'androidx.arch.core:core-testing:2.0.0-beta01'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+
+    // Test helper for Navigation component
+    androidTestImplementation "android.arch.navigation:navigation-testing-ktx:$nav_version"
+
+    // Test helper for Room
+    testImplementation "androidx.room:room-testing:$room_version"
 }

@@ -1,6 +1,6 @@
 package com.flowapps.parseCSV.util.extensions
 
-import android.arch.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleOwner
 import android.util.Log
 import com.flowapps.parseCSV.util.listeners.CoroutineLifecycleListener
 import kotlinx.coroutines.experimental.*

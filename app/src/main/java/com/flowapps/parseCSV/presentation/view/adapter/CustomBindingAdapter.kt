@@ -1,6 +1,6 @@
 package com.flowapps.parseCSV.presentation.view.adapter
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.view.View
 
 object CustomBindingAdapter {
@@ -8,6 +8,6 @@ object CustomBindingAdapter {
     @JvmStatic
     @BindingAdapter("showHide")
     fun showHide(view: View, show: Boolean) {
-        view.visibility = if(show) View.VISIBLE else View.INVISIBLE
+        view.visibility = if(show) View.VISIBLE else View.GONE
     }
 }

@@ -1,6 +1,6 @@
 package com.flowapps.parseCSV.presentation.view.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.flowapps.parseCSV.databinding.RecyclerviewRowBinding

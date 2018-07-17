@@ -1,8 +1,8 @@
 package com.flowapps.parseCSV.presentation.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.flowapps.parseCSV.service.models.Person
 import com.flowapps.parseCSV.service.repository.ProjectRepository
 import kotlinx.coroutines.experimental.Job

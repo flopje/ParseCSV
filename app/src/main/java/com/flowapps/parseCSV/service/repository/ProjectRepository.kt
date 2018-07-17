@@ -3,9 +3,9 @@ package com.flowapps.parseCSV.service.repository
 import android.annotation.SuppressLint
 import com.flowapps.parseCSV.App
 import com.flowapps.parseCSV.R
+import com.flowapps.parseCSV.persistence.AppDao
+import com.flowapps.parseCSV.persistence.AppDao_Impl
 import com.flowapps.parseCSV.service.models.Person
-import com.flowapps.parseCSV.service.models.selectAllPersona
-import com.raizlabs.android.dbflow.kotlinextensions.save
 import de.siegmar.fastcsv.reader.CsvReader
 import java.io.InputStreamReader
 import java.text.SimpleDateFormat
@@ -21,19 +21,13 @@ object ProjectRepository {
 
     fun loadData() : List<Person> {
 
-        var persons : List<Person> = retrievePersons()
+        var persons : List<Person> = App.db?.appDao()?.selectAllPersona() ?: listOf()
         if (persons.isEmpty()) {
             persons = parseData()
-            persons.forEach({
-                it.save()
-            })
+            App.db?.appDao()?.insertPersons(persons)
         }
 
         return persons
-    }
-
-    private fun retrievePersons(): List<Person> {
-        return selectAllPersona()
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -45,15 +39,16 @@ object ProjectRepository {
         val inputReader = InputStreamReader(inputStream)
         val csvReader = CsvReader()
         csvReader.setContainsHeader(skipHeader)
+        csvReader.setFieldSeparator(',')
 
         val csv = csvReader.read(inputReader)
-        csv.rows.forEach({
+        csv.rows.forEach {
             val person = Person(it.getField("First name"),
                     it.getField("Sur name"),
                     it.getField("Issue count"),
                     format.parse(it.getField("Date of birth")))
             listData.add(person)
-        })
+        }
 
         inputReader.close()
         inputStream.close()
