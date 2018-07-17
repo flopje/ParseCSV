@@ -5,11 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.flowapps.parseCSV.service.models.Person
 import com.flowapps.parseCSV.service.repository.ProjectRepository
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
 
 class PersonListViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -27,10 +24,10 @@ class PersonListViewModel(application: Application) : AndroidViewModel(applicati
         }
 
         job = launch(UI) {
-            val result = async {
+            val result = withContext(DefaultDispatcher) {
                 delay(2000L)
                 ProjectRepository.loadData()
-            }.await()
+            }
             personListObservable?.value = result
         }
         return personListObservable!!
