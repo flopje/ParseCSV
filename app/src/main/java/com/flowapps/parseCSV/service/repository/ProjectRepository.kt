@@ -21,7 +21,7 @@ object ProjectRepository {
 
     fun loadData() : List<Person> {
 
-        var persons : List<Person> = App.db.appDao().selectAllPersona() ?: listOf()
+        var persons : List<Person> = App.db.appDao().selectAllPersona()
         if (persons.isEmpty()) {
             App.db.appDao().insertPersons(parseData())
             persons = App.db.appDao().selectAllPersona()

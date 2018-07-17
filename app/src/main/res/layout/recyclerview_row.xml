@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
         <variable
             name="Person"
             type="com.flowapps.parseCSV.service.models.Person" />
@@ -14,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:layout_constraintBottom_toBottomOf="@+id/row_textview_1"
-        card_view:layout_constraintTop_toBottomOf="@+id/row_textview_1">
+        card_view:layout_constraintTop_toBottomOf="@+id/row_textview_1"
+        android:onClickListener="@{clickListener}">
 
         <TextView
             android:id="@+id/row_textview_1"

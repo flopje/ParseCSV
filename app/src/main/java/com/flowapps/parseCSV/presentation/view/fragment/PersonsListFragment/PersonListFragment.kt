@@ -1,4 +1,4 @@
-package com.flowapps.parseCSV.presentation.view.fragment.PersonsListFragment
+package com.flowapps.parseCSV.presentation.view.fragment.personslistfragment
 
 
 import androidx.lifecycle.Observer
