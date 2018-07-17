@@ -13,18 +13,15 @@ class App : Application() {
     }
 
     companion object {
-        private var instance: App? = null
-        var db: AppDatabase? = null
+        private lateinit var instance: App
 
-        fun applicationContext() : Context {
-            return instance!!.applicationContext
+        val db: AppDatabase by lazy {
+            Room.databaseBuilder(applicationContext(),
+                    AppDatabase::class.java, AppDatabase.NAME).build()
         }
-    }
 
-    override fun onCreate() {
-        super.onCreate()
-
-        db = Room.databaseBuilder(applicationContext,
-                AppDatabase::class.java, AppDatabase.NAME).build()
+        fun applicationContext(): Context {
+            return instance.applicationContext
+        }
     }
 }

@@ -21,10 +21,10 @@ object ProjectRepository {
 
     fun loadData() : List<Person> {
 
-        var persons : List<Person> = App.db?.appDao()?.selectAllPersona() ?: listOf()
+        var persons : List<Person> = App.db.appDao().selectAllPersona() ?: listOf()
         if (persons.isEmpty()) {
-            persons = parseData()
-            App.db?.appDao()?.insertPersons(persons)
+            App.db.appDao().insertPersons(parseData())
+            persons = App.db.appDao().selectAllPersona()
         }
 
         return persons

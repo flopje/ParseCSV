@@ -21,11 +21,6 @@ class PersonListFragment : Fragment() {
     private val personAdapter: PersonAdapter = PersonAdapter()
     private lateinit var mainBinding: FragmentPersonListBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
